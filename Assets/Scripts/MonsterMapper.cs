@@ -11,13 +11,13 @@ public class MonsterMapper : MonoBehaviour
 	public TileBase m_Border;
 	public TileBase m_ExplodedFloor;
     public TileBase tieTiili;
-    public TileBase stub;
+    public TileBase crap;
     public GameObject m_Explosion;
 	
 	private Grid m_Grid;
 	private Tilemap m_Foreground;
 	private Tilemap m_BackGround;
-    private Tilemap m_TreeGround;
+    private Tilemap m_BaseGround;
     //private GridInformation m_Info;
     private Vector3 monsterPosition;
 
@@ -26,9 +26,9 @@ public class MonsterMapper : MonoBehaviour
 	{
 		m_Grid = GameObject.Find("Grid").GetComponent<Grid>();
 		//m_Info = m_Grid.GetComponent<GridInformation>();
-		m_Foreground = GameObject.Find("Tiet").GetComponent<Tilemap>();
-		m_BackGround = GameObject.Find("Ruoho").GetComponent<Tilemap>();
-        m_TreeGround = GameObject.Find("Puut").GetComponent<Tilemap>();
+		m_Foreground = GameObject.Find("Pinta").GetComponent<Tilemap>();
+		m_BackGround = GameObject.Find("Pohja").GetComponent<Tilemap>();
+        m_BaseGround = GameObject.Find("Maapera").GetComponent<Tilemap>();
     }
 	
 	// Update is called once per frame
@@ -36,8 +36,8 @@ public class MonsterMapper : MonoBehaviour
 	{
         monsterPosition = this.transform.position;
         Vector3Int gridPos = m_Grid.WorldToCell(monsterPosition);
-        if(m_TreeGround.GetTile(gridPos) != null && m_TreeGround.GetTile(gridPos) != stub) {
-           // Debug.Log("Monster on puussa " + gridPos);
+        if(m_BackGround.GetTile(gridPos) == crap) {
+            Debug.Log("Monster is on crap " + gridPos);
             gameObject.SendMessage("SlowDown", 0.2f);
         }
         else
@@ -77,9 +77,9 @@ public class MonsterMapper : MonoBehaviour
         //{
         //    m_Foreground.SetTile(position, null);
         //}
-        if (m_TreeGround.GetTile(position) != null)
+        if (m_BackGround.GetTile(position) != null)
         {
-            m_TreeGround.SetTile(position, stub);
+            m_BackGround.SetTile(position, crap);
         }
 
         //m_Info.ErasePositionProperty(position, k_Key);

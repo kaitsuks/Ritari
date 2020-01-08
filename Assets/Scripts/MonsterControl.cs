@@ -28,10 +28,13 @@ public class MonsterControl : Physics2DObject
     private float moveVertical;
     bool directionRight = true;
     Animator animator;
+    SpriteRenderer spriteRenderer;
+    float runningVelocity = 0.7f;
 
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update gets called every frame
@@ -161,6 +164,38 @@ public class MonsterControl : Physics2DObject
         //
         {
             animator.SetTrigger("AttackLeft");
+        }
+
+        if (Input.GetKey("left"))
+        {
+
+            spriteRenderer.flipX = true;
+            if (rigidbody2D.velocity.x < -runningVelocity)
+            {
+                //  animator.SetTrigger("To Running");
+                Debug.Log("Nopeus nyt " + rigidbody2D.velocity.x);
+            }
+            //else
+            //  animator.SetTrigger("To Walking");
+        }
+        if (Input.GetKey("right"))
+        {
+
+            spriteRenderer.flipX = false;
+            if (rigidbody2D.velocity.x > runningVelocity)
+            {
+                //animator.SetTrigger("To Running");
+                Debug.Log("Nopeus nyt " + rigidbody2D.velocity.x);
+            }
+            //else
+            //  animator.SetTrigger("To Walking");
+        }
+
+
+        if (rigidbody2D.velocity == Vector2.zero)
+        {
+            //  animator.SetTrigger("To Standing");
+            // Debug.Log("Nopeus nyt " + rigidbody2D.velocity);
         }
     }
 
