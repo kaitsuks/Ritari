@@ -14,6 +14,11 @@ public class ChangeWeapon : MonoBehaviour
     Color color;
     int selected;
 
+    private GameObject im;
+    private Image img;
+
+    private Text tWeapon;
+
     /*
      * Tee Dropdown
 Tee skenelle sprite-objekti, jonka kuvaa tullaan vaihtamaan
@@ -36,16 +41,24 @@ Laita vielä sopivat tekstit valintalistan Optionsiin
         sword = Resources.Load<UnityEngine.Sprite>("Weapons/Sword");
         axe = Resources.Load<UnityEngine.Sprite>("Weapons/Axe");
         lasergun = Resources.Load<UnityEngine.Sprite>("Weapons/Lasergun");
+
+        im = GameObject.Find("ImageWeapon");
+        img = im.GetComponent<Image>();
+
+        tWeapon = GameObject.Find("TextWeaponName").GetComponent<Text>();
+        Debug.Log(tWeapon.text);
     }
 
     public void Vaihda()
     {
         selected = dd.value;
-        Debug.Log("Valittu " + selected);
+        //Debug.Log("Valittu " + selected);
 
-        if (selected == 0) m_SpriteRenderer.sprite = sword;
-        if (selected == 1) m_SpriteRenderer.sprite = axe;
-        if (selected == 2) m_SpriteRenderer.sprite = lasergun;
+        if (selected == 0) { m_SpriteRenderer.sprite = sword; img.sprite = sword; }
+        if (selected == 1) {m_SpriteRenderer.sprite = axe; img.sprite = axe; }
+        if (selected == 2) {m_SpriteRenderer.sprite = lasergun; img.sprite = lasergun; }
+
+        tWeapon.text = dd.captionText.text;
     }
 }
 
