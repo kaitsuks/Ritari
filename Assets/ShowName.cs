@@ -22,7 +22,7 @@ public class ShowName : MonoBehaviour
     void Awake()
     {
         //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
         // Update is called once per frame
         void Update()

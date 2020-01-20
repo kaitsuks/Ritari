@@ -104,25 +104,25 @@ public class MonsterControl : Physics2DObject
         //Debug.Log("MoveHorizontal = " + moveHorizontal);
         //if (Input.GetKeyDown("a"))
             //if (speed == 0 && !directionRight)
-            if (velo.x < 0.2f && velo.y < 0.2f && !directionRight)
-            //
-            {
-            animator.SetTrigger("StandLeft");
-        }
+            //if (velo.x < 0.2f && velo.y < 0.2f && !directionRight)
+            ////
+            //{
+            //animator.SetTrigger("ToIdle");
+        //}
 
         //if (Input.GetKeyDown("d"))
         //
         //if(speed==0 && directionRight)
-            if (velo.x < 0.2f && velo.y < 0.2f && directionRight)
-            {
-            animator.SetTrigger("StandRight");
-        }
+        //    if (velo.x < 0.2f && velo.y < 0.2f && directionRight)
+        //    {
+        //    animator.SetTrigger("ToIdle");
+        //}
         //if (Input.GetKeyDown("right"))
             if (Input.GetKey("right"))
             //
             {
             directionRight = true;
-            animator.SetTrigger("WalkRight");
+            animator.SetTrigger("ToWalk");
             speed += 0.1f;
             //speed += 1f;
             if (speed > maxspeed) speed = maxspeed;
@@ -132,7 +132,7 @@ public class MonsterControl : Physics2DObject
             //
             {
             directionRight = false;
-            animator.SetTrigger("WalkLeft");
+            animator.SetTrigger("ToWalk");
             speed += 0.1f;
             //speed += 1f;
             if (speed > maxspeed) speed = maxspeed;
@@ -170,9 +170,9 @@ public class MonsterControl : Physics2DObject
         {
 
             spriteRenderer.flipX = true;
-            if (rigidbody2D.velocity.x < -runningVelocity)
+            //if (rigidbody2D.velocity.x > Mathf.Abs(runningVelocity));
             {
-                //  animator.SetTrigger("To Running");
+                animator.SetTrigger("ToWalk");
                 Debug.Log("Nopeus nyt " + rigidbody2D.velocity.x);
             }
             //else
@@ -184,8 +184,8 @@ public class MonsterControl : Physics2DObject
             spriteRenderer.flipX = false;
             if (rigidbody2D.velocity.x > runningVelocity)
             {
-                //animator.SetTrigger("To Running");
-                Debug.Log("Nopeus nyt " + rigidbody2D.velocity.x);
+                animator.SetTrigger("ToWalk");
+                //Debug.Log("Nopeus nyt " + rigidbody2D.velocity.x);
             }
             //else
             //  animator.SetTrigger("To Walking");
@@ -194,7 +194,7 @@ public class MonsterControl : Physics2DObject
 
         if (rigidbody2D.velocity == Vector2.zero)
         {
-            //  animator.SetTrigger("To Standing");
+            animator.SetTrigger("ToIdle");
             // Debug.Log("Nopeus nyt " + rigidbody2D.velocity);
         }
     }
