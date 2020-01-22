@@ -8,7 +8,7 @@ public class AudioTest : MonoBehaviour
     public List<AudioClip> audioQueue = new List<AudioClip>();
 
     //Have index of where we are at in the queue
-    int index = 1;
+    int index = 0;
     int count;
     bool hasEntered = false;
 
@@ -61,6 +61,7 @@ public class AudioTest : MonoBehaviour
             hasEntered = false;
             Debug.Log("Exited Zone, no more playing sounds");
             //PlayAudio();
+            audioSource.Stop();
         }
 
     }
@@ -68,10 +69,10 @@ public class AudioTest : MonoBehaviour
     public void PlayAudio()
     {
         Debug.Log("Index = " + index);
-        index += 1;
+        
         if (index > (count - 1))
         {
-            index = 1;
+            index = 0;
             //Debug.Log("Index resetoitu = " + index);
         }
         Debug.Log("Index nyt = " + index);
@@ -80,5 +81,6 @@ public class AudioTest : MonoBehaviour
             audioSource.clip = audioQueue[index];
             audioSource.Play();
         }
+        index += 1;
     }
 }

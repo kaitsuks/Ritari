@@ -11,13 +11,13 @@ public class ReadSliderValue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tValue = GetComponentInChildren<Text>();
-        slider = GameObject.Find("SliderTest").GetComponent<Slider>();
+        tValue = GetComponent<Text>();
+        slider = GameObject.Find("sliderVolume").GetComponent<Slider>();
     }
 
     public void ReadIt()
     {
-        tValue.text = slider.value.ToString(); 
+        tValue.text = "Master Volume = " + Mathf.FloorToInt((slider.value * 10 + 1)).ToString(); 
     }
 
     // Update is called once per frame
